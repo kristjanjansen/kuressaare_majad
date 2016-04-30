@@ -6,8 +6,9 @@ module.exports = function(item) {
 
     if (item.feature.properties.aadress) {
         var data = {
-            aadress: item.feature.properties.aadress,
-            photo: item.feature.properties.foto_pikk
+            address: item.feature.properties.aadress,
+            photo: item.feature.properties.foto_pikk,
+            desc: item.feature.properties.desc
         }
         var filepath = './public/data/' + item.feature.properties.id + '.json'
         fs.writeFileSync(filepath, JSON.stringify(data))
