@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    
+    <title>Kuressaare</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <meta charset="utf-8">
+    <link href="css/app.css" rel="stylesheet" type="text/css" /> 
+    <link href="http://fonts.googleapis.com/css?family=Merriweather:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+ 
+  </head>
+  <body>
+    
+    <div id="map"></div>
+  
+    <div id="sidebar"></div>
+
+    <script type="sidebar/html" id="template_popup">
+        {{address}}
+    </script>
+    
+    <script type="sidebar/html" id="template_intro">
+      <article class="intro">
+        <h1>Kuressaare majad</h1>
+        <p>Kliki kaardil olevatel majadel ja tänavatel, et vaadata nende ehituslugu, krundikaarte ning fotosid.</p>
+        <p>Oma andmete lisamiseks kirjuta meile <a href="mailto:rita.tamm@kuressaare.ee">rita.tamm@kuressaare.ee</a>.</p>
+        <small>Projekt on valminud koostöös <a href="http://www.muinas.ee">Muinsuskaitseameti</a> Saaremaa osakonna, <a href="http://www.kuressaare.ee">Kuressaare linnavalitsuse</a> ning <a href="http://opendata.ee">Open Data Estoniaga</a>. Arendus <a href="https://github.com/kristjanjansen/kuressaare_majad">Githubis</a></small>
+      </article>
+    </script>
+   
+    
+      <script type="sidebar/html" id="template_sidebar">
+        <header>
+          <div class="image-big" style="background-image: url('{{photo}}')"></div>
+        </header>
+        <article>
+        <a href="" id="back" onclick="$('#sidebar').html(intro.render());map.setZoom(16)">×</a>
+          
+          <h2>{{address}}</h2>
+          
+          {{#heritage_url}}
+          <a class="heritage" href="{{heritage_url}}" target="_blank">⌘</a>
+          {{/heritage_url}}
+          
+          <h3>Hoone ajalugu</h3>          
+          
+          {{year}} {{year_historic}}
+        
+          {{{desc}}}
+          
+          {{#desc_source}}<p/><small>Allikas: {{{desc_source}}}</small>{{/desc_source}}
+
+          {{#historic_photos}}
+          <a href="{{url}}" target="_blank">          
+          <div class="image-small" style="background-image: url('{{url}}')"></div>
+          </a>
+          {{/historic_photos}}        
+
+          {{#osiliana_url}}
+         
+              <h3>Krundi ajalugu</h3>          
+          
+              {{{osiliana_desc}}}
+              <p />    
+              <small>Allikas: <a href="{{{osiliana_url}}}" target="_blank">Osiliana.ee</a></small>
+
+              {{#osiliana_images}}
+              <a href="{{url}}" target="_blank">          
+              <div class="image-small" style="background-image: url('{{url}}')"></div>
+              </a>
+              {{/osiliana_images}}    
+                 
+          {{/osiliana_url}}
+                    
+        </article>
+        
+        <footer>
+        </footer>
+      
+      </script>
+      
+      <script type="text/javascript" src="js/app.js"></script> 
+
+  </body>
+</html>
