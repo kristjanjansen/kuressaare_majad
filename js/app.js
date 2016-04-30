@@ -18,7 +18,7 @@ function main() {
      
     $('#sidebar').html(Mustache.render($('#template_intro').html()));
 
-    var base = new L.tileLayer('http://a.tiles.mapbox.com/v3/examples.map-zr0njcqy/{z}/{x}/{y}.png', {
+    var base = new L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: 'Mapbox'
     }).addTo(map);
 
@@ -32,7 +32,8 @@ function main() {
     
     function renderSidebar(f) {
       
-        map.panTo([f.properties.latlon.coordinates[1],f.properties.latlon.coordinates[0]]); 
+      //  map.panTo([f.properties.latlon.coordinates[1],f.properties.latlon.coordinates[0]]); 
+        
         map.setZoom(19);
         
         var file = './data/' + f.properties.id + '.json'

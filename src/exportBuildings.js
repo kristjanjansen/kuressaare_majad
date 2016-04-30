@@ -23,7 +23,7 @@ module.exports = function(data, callback) {
         .pipe(es.mapSync(attachHistoricBuildings))
         .pipe(es.mapSync(attachHistoricPhotos))
         .pipe(es.mapSync(attachId))
-    //    .pipe(es.mapSync(exportBuilding))
+        .pipe(es.mapSync(exportBuilding))
         .pipe(es.mapSync(function(item) { 
             item.feature.properties = { 'id': item.feature.properties.id }
             return item.feature
