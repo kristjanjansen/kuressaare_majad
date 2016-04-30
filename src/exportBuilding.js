@@ -9,7 +9,7 @@ module.exports = function(item) {
             aadress: item.feature.properties.aadress,
             photo: item.feature.properties.foto_pikk
         }
-        var filepath = './public/data/' + item.feature.properties.aadress.replace(/\//g,',') + '.json'
+        var filepath = './public/data/' + item.feature.properties.id + '.json'
         fs.writeFileSync(filepath, JSON.stringify(data))
     }
 
