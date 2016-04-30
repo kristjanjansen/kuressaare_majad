@@ -18,7 +18,7 @@ function main() {
      
     $('#sidebar').html(Mustache.render($('#template_intro').html()));
 
-    var base = new L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    var base = new L.tileLayer('https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}.png', {
       attribution: 'Mapbox'
     }).addTo(map);
 
