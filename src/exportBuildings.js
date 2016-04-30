@@ -7,8 +7,8 @@ var _ = require('lodash');
 var fs = require('fs')
 var path = require('path')
 
-var attachHistoricData = require('../src/attachHistoricData')
-var attachHistoricPhotoData = require('../src/attachHistoricPhotoData')
+var attachHistoricBuildings = require('../src/attachHistoricBuildings')
+var attachHistoricPhotos = require('../src/attachHistoricPhotos')
 var exportBuilding = require('../src/exportBuilding')
 
 module.exports = function(data, callback) {
@@ -19,8 +19,8 @@ module.exports = function(data, callback) {
         .pipe(iconv.decodeStream('latin1'))
         .pipe(jsonstream.parse('features.*'))
         .pipe(es.mapSync(function(feature) { return {data: data, feature: feature} }))
-        .pipe(es.mapSync(attachHistoricData))
-        .pipe(es.mapSync(attachHistoricPhotoData))
+        .pipe(es.mapSync(attachHistoricBuildings))
+        .pipe(es.mapSync(attachHistoricPhotos))
         .pipe(es.mapSync(exportBuilding))
         .pipe(es.mapSync(function(item) { 
             item.feature.properties = { 'address': item.feature.properties.aadress }
