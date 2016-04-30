@@ -9,6 +9,7 @@ var path = require('path')
 
 var attachHistoricData = require('../src/attachHistoricData')
 var attachHistoricPhotoData = require('../src/attachHistoricPhotoData')
+var exportBuilding = require('../src/exportBuilding')
 
 module.exports = function(data, callback) {
 
@@ -20,6 +21,7 @@ module.exports = function(data, callback) {
         .pipe(es.mapSync(function(feature) { return {data: data, feature: feature} }))
         .pipe(es.mapSync(attachHistoricData))
         .pipe(es.mapSync(attachHistoricPhotoData))
+        .pipe(es.mapSync(exportBuilding))
         .pipe(es.mapSync(function(item) { 
             item.feature.properties = { 'address': item.feature.properties.aadress }
             return item.feature
