@@ -19,7 +19,7 @@ function main() {
     $('#sidebar').html(Mustache.render($('#template_intro').html()));
 
     var base = new L.tileLayer('https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}.png', {
-      attribution: 'Mapbox'
+      opacity: 0.7
     }).addTo(map);
 
 
@@ -51,7 +51,7 @@ function main() {
     .on('ready', function() {
         this.setStyle({
             fillColor: '#433',
-            fillOpacity: 0.3,
+            fillOpacity: 0.5,
             weight: 0
         })
         this.eachLayer(function(f) {
