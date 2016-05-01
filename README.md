@@ -2,7 +2,7 @@
 
 ### Buildings
 
-```json
+```js
 
 { type: 'Feature',
   properties: 
@@ -33,7 +33,7 @@
 
 ### Historic buildings
 
-```json
+```js
 
 { type: 'Feature',
   properties: 
@@ -52,7 +52,7 @@
 
 ### Historic photos
 
-```json
+```js
 
 [ { type: 'Feature',
     properties: 
