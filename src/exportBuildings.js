@@ -1,6 +1,5 @@
 var request = require('request')
 var jsonstream = require('JSONStream')
-var iconv = require('iconv-lite');
 var es = require('event-stream')
 var _ = require('lodash');
 
@@ -16,8 +15,7 @@ module.exports = function(data, callback) {
 
     var url = 'http://kristjanjansen.ee/files/kuressaare_data/Linna_majad.geojson'
 
-    request(url)
-        .pipe(iconv.decodeStream('latin1'))
+    request({url: url, encoding: null})
         .pipe(jsonstream.parse('features.*'))
         .pipe(es.mapSync(function(feature) { return {data: data, feature: feature} }))
         .pipe(es.mapSync(attachHistoricBuildings))
