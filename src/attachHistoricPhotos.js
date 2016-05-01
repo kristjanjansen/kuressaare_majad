@@ -1,17 +1,3 @@
-/*
-
-[ { type: 'Feature',
-    properties: 
-     { id: null,
-       asukoht: 'Tolli 27',
-       foto: 'Y:\\pildid\\FOTOGALERII_arhitektid\\Uus kaust_vanad fotod\\Tolli27_Saksasalongklubi.jpg',
-       aasta: null,
-       pildistami: 310,
-       selgitus: 'Saksa Salongklubi, hÃ¤vinenud 1917' },
-    geometry: { type: 'Point', coordinates: [Object] } } ]
-=
-*/
-
 var _ = require('lodash');
 
 module.exports = function(item) {
