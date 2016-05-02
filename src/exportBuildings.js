@@ -22,6 +22,13 @@ module.exports = function(data, callback) {
         .pipe(es.mapSync(attachId))
         .pipe(es.mapSync(attachHistoricBuildings))
         .pipe(es.mapSync(attachHistoricPhotos))
+        .pipe(es.map(function(item, callback) {
+            if (item.feature.properties.desc || item.feature.properties.historic_photos.length) {
+                callback(null, item)
+            } else {
+                callback()
+            }
+        }))
         .pipe(es.mapSync(attachBuildingPhotos))
         .pipe(es.mapSync(exportBuilding))
         .pipe(es.mapSync(function(item) { 

@@ -31,4 +31,4 @@ module.exports = async.queue(function (payload, callback) {
         callback();
     })
 
-}, 50);
+}, concurrency);
