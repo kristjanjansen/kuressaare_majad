@@ -1,9 +1,27 @@
+var fs = require('fs')
+
 var async = require('async')
+var request = require('request')
+var sharp = require('sharp')
 
-module.exports = async.queue(function (task, callback) {
+var concurrency = 10
+
+module.exports = async.queue(function (payload, callback) {
     
-    console.log(task);
+    var req = request(payload.source, function(err) { 
+        if (err) {}
+    })
 
-    callback();
+    req.on('response', function (res) {
+        if (res.statusCode === 200) {
+            req
+                .pipe(sharp().resize(500))
+                .pipe(fs.createWriteStream(payload.target))
+        }
+    })
 
-}, 1);
+    req.on('end', function() { 
+        callback();
+    })
+
+}, 30);

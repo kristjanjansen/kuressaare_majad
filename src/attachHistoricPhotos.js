@@ -15,17 +15,14 @@ module.exports = function(item) {
             if (photo.properties.foto) {
                 
                 var filename = photo.properties.foto.split('\\')[4]
-                
-                var source = baseUrl + filename
-                var target = './images/historic/' + filename
 
                 item.feature.properties.historic_photos.push({
-                    'url': source
+                    'url': './images/historic/' + filename
                 })
             
                 downloadQueue.push({
-                    source: source,
-                    target: target
+                    source: baseUrl + filename,
+                    target: './public/images/historic/' + filename
                 })
 
             }
