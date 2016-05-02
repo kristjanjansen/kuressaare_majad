@@ -9,6 +9,7 @@ var path = require('path')
 var attachId = require('../src/attachId')
 var attachHistoricBuildings = require('../src/attachHistoricBuildings')
 var attachHistoricPhotos = require('../src/attachHistoricPhotos')
+var filterBuildings = require('../src/filterBuildings')
 var attachBuildingPhotos = require('../src/attachBuildingPhotos')
 var exportBuilding = require('../src/exportBuilding')
 
@@ -22,13 +23,7 @@ module.exports = function(data, callback) {
         .pipe(es.mapSync(attachId))
         .pipe(es.mapSync(attachHistoricBuildings))
         .pipe(es.mapSync(attachHistoricPhotos))
-        .pipe(es.map(function(item, callback) {
-            if (item.feature.properties.desc || item.feature.properties.historic_photos.length) {
-                callback(null, item)
-            } else {
-                callback()
-            }
-        }))
+        .pipe(es.map(filterBuildings))
         .pipe(es.mapSync(attachBuildingPhotos))
         .pipe(es.mapSync(exportBuilding))
         .pipe(es.mapSync(function(item) { 
