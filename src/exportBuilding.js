@@ -5,7 +5,7 @@ module.exports = function(item) {
     if (item.feature.properties.aadress) {
         var data = {
             address: item.feature.properties.aadress,
-            photo: item.feature.properties.foto_pikk,
+            photo: item.feature.properties.photo,
             desc: item.feature.properties.desc,
             historic_photos: item.feature.properties.historic_photos
         }

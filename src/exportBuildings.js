@@ -6,9 +6,10 @@ var _ = require('lodash');
 var fs = require('fs')
 var path = require('path')
 
+var attachId = require('../src/attachId')
 var attachHistoricBuildings = require('../src/attachHistoricBuildings')
 var attachHistoricPhotos = require('../src/attachHistoricPhotos')
-var attachId = require('../src/attachId')
+var attachBuildingPhotos = require('../src/attachBuildingPhotos')
 var exportBuilding = require('../src/exportBuilding')
 
 module.exports = function(data, callback) {
@@ -18,9 +19,10 @@ module.exports = function(data, callback) {
     request({url: url, encoding: null})
         .pipe(jsonstream.parse('features.*'))
         .pipe(es.mapSync(function(feature) { return {data: data, feature: feature} }))
+        .pipe(es.mapSync(attachId))
         .pipe(es.mapSync(attachHistoricBuildings))
         .pipe(es.mapSync(attachHistoricPhotos))
-        .pipe(es.mapSync(attachId))
+        .pipe(es.mapSync(attachBuildingPhotos))
         .pipe(es.mapSync(exportBuilding))
         .pipe(es.mapSync(function(item) { 
             item.feature.properties = { 'id': item.feature.properties.id }
