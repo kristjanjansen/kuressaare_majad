@@ -3,8 +3,9 @@
 #### Linux
 
 1. Install NodeJS. See the packages for [Ubuntu](https://nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-distributions) and other distributions.
-2. Download https://github.com/kristjanjansen/kuressaare_majad/archive/master.zip
-3. Unpack and run
+2. Download and unpack https://github.com/kristjanjansen/kuressaare_majad/archive/master.zip
+3. Copy ```settings.example.json``` to ```settings.json``` and adjust the URLs accordingly
+4. Unpack and run
 
     ```sh
     npm install
@@ -23,8 +24,9 @@ At the moment only 64-bit Windows is supported
     npm config set python C:\python27 # or whereever Python is installed
     ```
 
-4. Download https://github.com/kristjanjansen/kuressaare_majad/archive/master.zip
-5. Unpack and run in the shell:
+4. Download and unpack https://github.com/kristjanjansen/kuressaare_majad/archive/master.zip
+5. Copy ```settings.example.json``` to ```settings.json``` and adjust the URLs accordingly
+6. Run in the shell:
 
     ```sh
     npm install
