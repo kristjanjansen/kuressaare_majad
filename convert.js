@@ -1,5 +1,7 @@
 var async = require('async');
 
+console.log('Starting conversion...')
+
 async.waterfall([
 
     async.apply(require('./src/importHistoricPlans'), {}),
@@ -8,7 +10,7 @@ async.waterfall([
     require('./src/importOsiliana'),
     require('./src/exportBuildings')
 
-], function (err, data) {
+], function (err) {
 
     console.log('Done')
 

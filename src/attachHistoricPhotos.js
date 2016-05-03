@@ -29,18 +29,12 @@ module.exports = function(item) {
                 downloadQueue.push({
                     source: baseUrl + filename,
                     target: './public/images/historic/' + filename
-                }, function(err) {
+                }, function(err) {})
                 
-                    if (!err && item.feature.properties.historic_photos) {
-
-                        item.feature.properties.historic_photos.push({
-                            'url': './images/historic/' + filename
-                        })
-                    
-                    }
-
-                }.bind(item))
-
+                item.feature.properties.historic_photos.push({
+                    'url': './images/historic/' + filename
+                })
+            
             }
         
         })
