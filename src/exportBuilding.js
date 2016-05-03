@@ -7,7 +7,8 @@ module.exports = function(item) {
             address: item.feature.properties.aadress,
             photo: item.feature.properties.photo,
             desc: item.feature.properties.desc,
-            historic_photos: item.feature.properties.historic_photos
+            historic_photos: item.feature.properties.historic_photos,
+            historic_plans: item.feature.properties.historic_plans
         }
         var filepath = './public/data/' + item.feature.properties.id + '.json'
         fs.writeFileSync(filepath, JSON.stringify(data))
