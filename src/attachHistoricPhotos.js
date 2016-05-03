@@ -2,6 +2,16 @@ var _ = require('lodash');
 
 var downloadQueue = require('../src/downloadQueue')
 
+function cleanPath(filename) {
+
+    return filename
+        .replace(/Ãµ/g, 'o')
+        .replace(/Ã¤/g, 'a')
+        .replace(/Ã¶/g, 'o')
+        .replace(/Ã¼/g, 'u')
+
+}
+
 module.exports = function(item) {
 
     var baseUrl = 'http://gis.kuressaare.ee:8888/failid/Ajaloolised_pildid/'
@@ -14,16 +24,22 @@ module.exports = function(item) {
             
             if (photo.properties.foto) {
                 
-                var filename = photo.properties.foto.split('\\')[4]
-
-                item.feature.properties.historic_photos.push({
-                    'url': './images/historic/' + filename
-                })
+                var filename = cleanPath(photo.properties.foto.split('\\')[4])
             
                 downloadQueue.push({
                     source: baseUrl + filename,
                     target: './public/images/historic/' + filename
-                })
+                }, function(err) {
+                
+                    if (!err && item.feature.properties.historic_photos) {
+
+                        item.feature.properties.historic_photos.push({
+                            'url': './images/historic/' + filename
+                        })
+                    
+                    }
+
+                }.bind(item))
 
             }
         
