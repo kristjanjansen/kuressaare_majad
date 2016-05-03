@@ -1,0 +1,5 @@
+{
+    "buildingsUrl": "http://kristjanjansen.ee/files/kuressaare_data/Linna_majad.geojson",
+    "historicBuildingsUrl": "http://kristjanjansen.ee/files/kuressaare_data/ajaloolised_majad.geojson",
+    "historicPhotosUrl": "http://kristjanjansen.ee/files/kuressaare_data/vanalinna_fotod.geojson"
+}

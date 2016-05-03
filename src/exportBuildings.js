@@ -14,9 +14,11 @@ var filterBuildings = require('../src/filterBuildings')
 var attachBuildingPhotos = require('../src/attachBuildingPhotos')
 var exportBuilding = require('../src/exportBuilding')
 
+var config = require('../config.json')
+
 module.exports = function(data, callback) {
 
-    var url = 'http://kristjanjansen.ee/files/kuressaare_data/Linna_majad.geojson'
+    var url = config.buildingsUrl
 
     request({url: url, encoding: null})
         .pipe(jsonstream.parse('features.*'))
