@@ -5,7 +5,7 @@ var _ = require('lodash');
 var request = require('request')
 var sharp = require('sharp')
 
-var concurrency = 10
+var concurrency = 5
 
 module.exports = async.queue(function (payload, callback) {
     
@@ -21,9 +21,7 @@ module.exports = async.queue(function (payload, callback) {
         if (res.statusCode === 200) {
             req
                 .pipe(sharp().resize(500).on('error', function(err) { 
-                    if (err) {
-                        this.emit('error', 'Resize error ' + payload.source);
-                    }
+                    this.emit('error', 'Resize error ' + payload.source);
                 }))
                 .pipe(fs.createWriteStream(payload.target))
                 

@@ -9,7 +9,7 @@ module.exports = function(data, callback) {
 
         data.historicPlans = _(cells)
             .map(function(cell) {
-                return cell.value.replace(/\s+/g, ' ')
+                return cell.value.replace(/\s+/g, ' ').trim()
             })
             .chunk(2)
             .tail()

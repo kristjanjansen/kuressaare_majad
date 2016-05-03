@@ -9,7 +9,7 @@ module.exports = function(data, callback) {
 
         data.osilianaData = _(cells)
             .map(function(cell) {
-                return cell.value.replace(/\s+/g, ' ')
+                return cell.value.replace(/\s+/g, ' ').trim()
             })
             .chunk(4)
             .tail()

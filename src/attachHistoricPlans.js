@@ -1,3 +1,5 @@
+var path = require('path');
+
 var _ = require('lodash');
 
 var downloadQueue = require('../src/downloadQueue')
@@ -10,14 +12,22 @@ module.exports = function(item) {
         
         plans.forEach(function(plan) {
             
-                item.feature.properties.historic_plans.push({
-                    'url': './images/plans/' + item.feature.properties.id + '.jpg'
-                })
-            
+                var source = path.dirname(plan.url) + '/' + encodeURIComponent(path.basename(plan.url))
+
                 downloadQueue.push({
-                    source: plan.url,
+                    source: source,
                     target: './public/images/plans/' + item.feature.properties.id + '.jpg'
-                })
+                }, function(err) {
+                
+                    if (!err && item.feature.properties.historic_plans) {
+
+                        item.feature.properties.historic_plans.push({
+                            'url': './images/plans/' + item.feature.properties.id + '.jpg'
+                        })
+                    
+                    }
+
+                }.bind(item))
         
         })
     
