@@ -20,7 +20,7 @@ module.exports = function(data, callback) {
 
     var url = config.buildingsUrl
 
-    request({url: url, encoding: null})
+    request(url)
         .pipe(jsonstream.parse('features.*'))
         .pipe(es.mapSync(function(feature) { return {data: data, feature: feature} }))
         .pipe(es.mapSync(attachId))
