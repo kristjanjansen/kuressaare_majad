@@ -1,5 +1,7 @@
 var gulp = require('gulp');
 var concat = require('gulp-concat');
+var minifyCSS = require('gulp-clean-css');
+var minifyJS = require('gulp-uglify');
 
 gulp.task('css', function() {
 
@@ -8,6 +10,7 @@ gulp.task('css', function() {
         './css/app.css'
     ])
     .pipe(concat('app.css'))
+    .pipe(minifyCSS())
     .pipe(gulp.dest('./public/css'));
 
 });
@@ -22,6 +25,7 @@ gulp.task('js', function() {
         './js/app.js'
     ])
     .pipe(concat('app.js'))
+    .pipe(minifyJS())
     .pipe(gulp.dest('./public/js'));
 
 });

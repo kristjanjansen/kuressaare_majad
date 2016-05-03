@@ -1,15 +1,9 @@
 var map = L.map('map', {
   zoomControl: true,
   center: [58.2521, 22.4854],
-  zoom: 16,
+  zoom: 17,
   attributionControl: false
 });
-
-var popup = L.popup({
-   minWidth: 20,
-   closeButton:false,
-   zoomAnimation: false,
-   })
    
 var currLayer = {}
 
@@ -21,14 +15,6 @@ function main() {
     var base = new L.tileLayer('https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}.png', {
       opacity: 0.7
     }).addTo(map);
-
-
-    function renderPopup(f) {        
-           popup
-           .setLatLng([f.properties.latlon.coordinates[1],f.properties.latlon.coordinates[0]])
-           .setContent(f.properties.address)
-           .openOn(map);       
-    }
     
     function renderSidebar(f) {
       
@@ -68,6 +54,4 @@ function main() {
 
   }
     
-
-
 window.onload = main;
